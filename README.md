@@ -33,7 +33,9 @@ pip install numpy
 
 ```
 
-### 4. Rodando o Script de Teste
+### 4. Rodando os Scripts
+
+#### Script Principal (script.py)
 
 Execute o arquivo principal para rodar o exemplo numérico de validação da camada de Attention:
 
@@ -41,6 +43,22 @@ Execute o arquivo principal para rodar o exemplo numérico de validação da cam
 python script.py
 
 ```
+
+#### Arquivo de Testes (test_attention.py)
+
+Para validar a implementação com testes automáticos, execute:
+
+```bash
+python test_attention.py
+
+```
+
+O arquivo `test_attention.py` contém 3 testes:
+- **test_softmax_por_linha**: Valida a normalização softmax (soma = 1, valores entre 0 e 1)
+- **test_scaled_dot_product_attention**: Verifica dimensões e propriedades dos pesos/saída
+- **test_attention_com_valores_conhecidos**: Testa com valores simples para evitar NaN ou infinitos
+
+Todos os testes devem passar com ✓.
 
 ---
 
