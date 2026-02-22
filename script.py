@@ -6,34 +6,18 @@ def softmax_por_linha(x):
     Subtraímos o valor máximo da linha para garantir estabilidade numérica.
     """
     e_x = np.exp(x - np.max(x, axis=-1, keepdims=True))
-
     return e_x / np.sum(e_x, axis=-1, keepdims=True)
 
 def scaled_dot_product_attention(Q, K, V):
     """
     Implementa o mecanismo de Attention conforme "Attention Is All You Need".
     """
-
-    # d_k é a dimensão das chaves (número de colunas da matriz K)
     d_k = K.shape[-1]
-    
-    # 1. Produto Escalar (Q * K^T)
     pontuacoes = np.dot(Q, K.T)
-    
-
-    # 2. Fator de Escalonamento (divisão pela raiz de d_k)
     pontuacoes_escalonadas = pontuacoes / np.sqrt(d_k)
-    
-    # 3. Aplicação do Softmax por linha
     pesos_atencao = softmax_por_linha(pontuacoes_escalonadas)
-    
-    # 4. Multiplicação pela matriz Value (V)
     saida = np.dot(pesos_atencao, V)
-    
-
     return saida, pesos_atencao
-
-
 
 if __name__ == "__main__":
 
